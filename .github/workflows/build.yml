@@ -1,19 +1,11 @@
-name: Build C++ Application
+name: Build C++
 
-on:
-  push: 
-    branches: [main]
-jobs: 
-  build: 
+on: push
+
+jobs:
+  build:
     runs-on: ubuntu-latest
-
-steps:
-  - name: Checkout repository
-    uses: actions/checkout@v4
-
-  - name: Compile C++ program
-    run: g++ -std=c++17 main.cpp -o bank
-
-  - name: Test program
-    run: |
-      printf '4\n' | ./bank
+    steps:
+      - uses: actions/checkout@v4
+      - run: g++ main.cpp -o bank
+      - run: echo 4 | ./bank
